@@ -56,14 +56,14 @@ public class Window extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(200);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jLabel1.setText("Attacker");
+        jLabel1.setText("Nio Tamanegi");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jLabel2.setText("Defender");
+        jLabel2.setText("Zoie Kaji");
 
-        jLabel3.setText("HP: 0/0");
+        jLabel3.setText("HP: 50/80");
 
-        jLabel4.setText("HP: 0/0");
+        jLabel4.setText("HP: 0/40");
 
         jButton1.setText("Ability 1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +196,13 @@ public class Window extends javax.swing.JFrame {
 
     public void setCurrentCombat(Combat currentCombat) {
         this.currentCombat = currentCombat;
+    }
+    
+    public void updateView() {
+        jProgressBar1.setMaximum(currentCombat.getAlly(0).getMaxHP());
+        jProgressBar1.setValue(currentCombat.getAlly(0).getHP());
+        jProgressBar2.setMaximum(currentCombat.getEnemy(0).getMaxHP());
+        jProgressBar2.setValue(currentCombat.getEnemy(0).getHP());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

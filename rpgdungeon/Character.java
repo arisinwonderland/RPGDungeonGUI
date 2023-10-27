@@ -40,7 +40,7 @@ public class Character {
         this.npd = npd;
         this.spd = spd;
         
-        abilities = new ArrayList<Ability>();
+        abilities = new ArrayList<>();
     }
     
     public Character addAbility(Ability ab) {

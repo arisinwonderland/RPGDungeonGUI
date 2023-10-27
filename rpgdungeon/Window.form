@@ -140,7 +140,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Attacker"/>
+                <Property name="text" type="java.lang.String" value="Nio Tamanegi"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -150,19 +150,19 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Defender"/>
+                <Property name="text" type="java.lang.String" value="Zoie Kaji"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="jProgressBar1">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="HP: 0/0"/>
+                <Property name="text" type="java.lang.String" value="HP: 50/80"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="HP: 0/0"/>
+                <Property name="text" type="java.lang.String" value="HP: 0/40"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="jProgressBar2">
