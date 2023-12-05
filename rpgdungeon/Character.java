@@ -14,12 +14,7 @@ import java.util.ArrayList;
 public class Character {
     protected final String name;
     
-    protected final int hp;
-    protected final int pa;
-    protected final int npa;
-    protected final int pd;
-    protected final int npd;
-    protected final int spd;
+    protected final Stats stats;
     
     protected final List<Ability> abilities;
     
@@ -33,13 +28,8 @@ public class Character {
     
     public Character(String name, int hp, int pa, int npa, int pd, int npd, int spd) {
         this.name = name;
-        this.hp = hp;
-        this.pa = pa;
-        this.npa = npa;
-        this.pd = pd;
-        this.npd = npd;
-        this.spd = spd;
         
+        stats = new Stats(hp, pa, npa, pd, npd, spd);
         abilities = new ArrayList<>();
     }
     
@@ -51,34 +41,27 @@ public class Character {
     public String getName() {
         return name;
     }
-
     public int getHP() {
-        return hp;
+        return stats.getHP();
     }
-
     public int getPA() {
-        return pa;
+        return stats.getPA();
     }
-
     public int getNPA() {
-        return npa;
+        return stats.getNPA();
     }
-
     public int getPD() {
-        return pd;
+        return stats.getPD();
     }
-
     public int getNPD() {
-        return npd;
+        return stats.getNPD();
     }
-
     public int getSpd() {
-        return spd;
+        return stats.getSpd();
     }
     
     public int[] getStats() {
-        int[] stats = {hp, pa, npa, pd, npd, spd};
-        return stats;
+        return stats.getStats();
     }
     
     public Ability getAbility(int id) {
@@ -92,7 +75,7 @@ public class Character {
     
     @Override
     public String toString() {
-        return String.format("%s \nHP: %d\nPA: %d\nNPA: %d\nPD: %d\nNPD: %d\nSPD: %d", 
-            name, hp, pa, npa, pd, npd, spd);
+        return String.format("%s \n%s", 
+            name, stats);
     }
 }

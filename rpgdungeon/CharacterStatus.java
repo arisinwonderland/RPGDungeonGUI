@@ -4,6 +4,9 @@
  */
 package com.arisinwonderland.rpgdungeon;
 
+import java.util.List;
+import java.util.LinkedList;
+
 /**
  *
  * @author Aris Yu
@@ -19,30 +22,38 @@ public class CharacterStatus {
     
     protected final int id;
     protected final int pos;
-    protected final Character chr;
     
-    protected int currentHP;
+    protected final Character chr;
+    protected Stats stats;
+    
+    protected List<Effect> effects;
     
     public CharacterStatus(Character chr, int pos) {
         id = currentID;
         currentID++;
         this.chr = chr;
         this.pos = pos;
-        currentHP = chr.getHP();
+        stats = new Stats(chr.getStats());
+        effects = new LinkedList<>();
+    }
+    
+    public void updateStats() {
+        // add function here
     }
     
     public int changeHP(int change) {
-        int startingHP = currentHP;
+        int startingHP = stats.getHP();
+        int newHP = startingHP + change;
         
-        currentHP += change;
-        
-        if (currentHP > chr.getHP()) {
-            currentHP = chr.getHP();
-        } else if (currentHP < 0) {
-            currentHP = 0;
+        if (newHP > chr.getHP()) {
+            newHP = chr.getHP();
+        } else if (newHP < 0) {
+            newHP = 0;
         }
         
-        return currentHP - startingHP;
+        stats.setHP(newHP);
+                
+        return newHP - startingHP;
     }
     
     public String useAbility(int id, CharacterStatus target) {
@@ -89,42 +100,34 @@ public class CharacterStatus {
     public int getID() {
         return id;
     }
-    
     public String getName() {
         return chr.getName();
     }
-    
     public int getHP() {
-        return currentHP;
+        return stats.getHP();
     }
-    
     public int getMaxHP() {
         return chr.getHP();
     }
-
     public int getPA() {
-        return chr.getPA();
+        return stats.getPA();
     }
-
     public int getNPA() {
-        return chr.getNPA();
+        return stats.getNPA();
     }
-
     public int getPD() {
-        return chr.getPD();
+        return stats.getPD();
     }
-
     public int getNPD() {
-        return chr.getNPD();
+        return stats.getNPD();
     }
-
     public int getSpd() {
-        return chr.getSpd();
+        return stats.getSpd();
     }
     
     @Override
     public String toString() {
         return String.format("%s\nHP: %d/%d", 
-            chr.getName(), currentHP, chr.getHP());
+            chr.getName(), stats.getHP(), chr.getHP());
     }
 }

@@ -43,4 +43,12 @@ public class Combat {
     public CharacterStatus getEnemy(int pos) {
         return enemies.get(pos);
     }
+    
+    public List<CharacterStatus> getAllies() {
+        return new ArrayList<> (allies);
+    }
+    
+    public List<CharacterStatus> getEnemies() {
+        return new ArrayList<> (enemies);
+    }
 }
