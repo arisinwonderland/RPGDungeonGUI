@@ -15,7 +15,6 @@ public class Character {
     protected final String name;
     
     protected final Stats stats;
-    
     protected final List<Ability> abilities;
     
     public Character() {
@@ -31,6 +30,17 @@ public class Character {
         
         stats = new Stats(hp, pa, npa, pd, npd, spd);
         abilities = new ArrayList<>();
+    }
+    
+    public Character(Character c) {
+        this.name = c.name;
+        
+        stats = new Stats(c.stats);
+        abilities = new ArrayList<>();
+        
+        for (Ability ab : c.abilities) {
+            abilities.add(new Ability(ab));
+        }
     }
     
     public Character addAbility(Ability ab) {
@@ -66,16 +76,14 @@ public class Character {
     
     public Ability getAbility(int id) {
         try {
-            return abilities.get(id);
-        } catch(IndexOutOfBoundsException exc) {
-            exc.printStackTrace();
+            return new Ability(abilities.get(id));
+        } catch (IndexOutOfBoundsException exc) {
             return null;
         }
     }
     
     @Override
     public String toString() {
-        return String.format("%s \n%s", 
-            name, stats);
+        return String.format("%s \n%s", name, stats);
     }
 }

@@ -82,6 +82,14 @@ public class Ability {
         statMultiplier = builder.statMultiplier;
         damageMultiplier = builder.damageMultiplier;
     }
+    
+    public Ability(Ability ab) {
+        name = ab.name;
+        attackType = ab.attackType;
+        defenseType = ab.defenseType;
+        statMultiplier = ab.statMultiplier;
+        damageMultiplier = ab.damageMultiplier;
+    }
 
     public String getName() {
         return name;

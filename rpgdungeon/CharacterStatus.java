@@ -26,7 +26,7 @@ public class CharacterStatus {
     protected final Character chr;
     protected Stats stats;
     
-    protected List<Effect> effects;
+    protected List<StatusEffect> statuses;
     
     public CharacterStatus(Character chr, int pos) {
         id = currentID;
@@ -34,7 +34,19 @@ public class CharacterStatus {
         this.chr = chr;
         this.pos = pos;
         stats = new Stats(chr.getStats());
-        effects = new LinkedList<>();
+        statuses = new LinkedList<>();
+    }
+    
+    public Character getCharacter() {
+        return new Character(chr);
+    }
+    
+    public Ability getAbility(int id) {
+        if (chr.getAbility(id) != null) {
+            return new Ability(chr.getAbility(id));
+        } else {
+            return null;
+        }
     }
     
     public void updateStats() {

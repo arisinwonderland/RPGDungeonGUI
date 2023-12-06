@@ -8,6 +8,6 @@ package com.arisinwonderland.rpgdungeon;
  *
  * @author Aris Yu
  */
-public interface Effect {
+public interface StatusEffect {
     public void apply(CharacterStatus c);
 }
