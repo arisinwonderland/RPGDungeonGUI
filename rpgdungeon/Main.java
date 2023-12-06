@@ -62,15 +62,6 @@ public class Main {
                 CharacterStatus status1 = combat.addAlly(ch1);
                 CharacterStatus status2 = combat.addEnemy(ch2);
                 
-                mainWindow.writeToConsole(ch1.toString());
-                mainWindow.writeToConsole(ch2.toString());
-                mainWindow.writeToConsole(status1.toString());
-                mainWindow.writeToConsole(status2.toString());
-                mainWindow.writeToConsole(status2.useAbility(0, status1));
-                mainWindow.writeToConsole(status1.useAbility(0, status2));
-                mainWindow.writeToConsole(status1.toString());
-                mainWindow.writeToConsole(status2.toString());
-                
                 mainWindow.updateView();
             }
         });

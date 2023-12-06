@@ -18,6 +18,9 @@ public class MainWindow extends javax.swing.JFrame {
     private int allyPos;
     private int enemyPos;
     
+    private CharacterStatus activeAlly;
+    private CharacterStatus activeEnemy;
+    
     private Combat currentCombat;
     private List<javax.swing.JButton> allyButtons;
     private List<javax.swing.JButton> enemyButtons;
@@ -89,20 +92,60 @@ public class MainWindow extends javax.swing.JFrame {
         enemyHPLabel.setText("HP: 0/0");
 
         allyAbility0.setText("Ability 1");
+        allyAbility0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allyAbility0ActionPerformed(evt);
+            }
+        });
 
         allyAbility1.setText("Ability 2");
+        allyAbility1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allyAbility1ActionPerformed(evt);
+            }
+        });
 
         allyAbility2.setText("Ability 3");
+        allyAbility2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allyAbility2ActionPerformed(evt);
+            }
+        });
 
         allyAbility3.setText("Ability 4");
+        allyAbility3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allyAbility3ActionPerformed(evt);
+            }
+        });
 
         enemyAbility0.setText("Ability 1");
+        enemyAbility0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enemyAbility0ActionPerformed(evt);
+            }
+        });
 
         enemyAbility1.setText("Ability 2");
+        enemyAbility1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enemyAbility1ActionPerformed(evt);
+            }
+        });
 
         enemyAbility2.setText("Ability 3");
+        enemyAbility2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enemyAbility2ActionPerformed(evt);
+            }
+        });
 
         enemyAbility3.setText("Ability 4");
+        enemyAbility3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enemyAbility3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,6 +229,39 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void allyAbility0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility0ActionPerformed
+        writeToConsole(activeAlly.useAbility(0, activeEnemy));
+        updateView();
+    }//GEN-LAST:event_allyAbility0ActionPerformed
+
+    private void allyAbility1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allyAbility1ActionPerformed
+
+    private void allyAbility2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allyAbility2ActionPerformed
+
+    private void allyAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_allyAbility3ActionPerformed
+
+    private void enemyAbility0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility0ActionPerformed
+        writeToConsole(activeEnemy.useAbility(0, activeAlly));
+        updateView();
+    }//GEN-LAST:event_enemyAbility0ActionPerformed                                          
+
+    private void enemyAbility1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enemyAbility1ActionPerformed
+
+    private void enemyAbility2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enemyAbility2ActionPerformed
+
+    private void enemyAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enemyAbility3ActionPerformed
     
     public void writeToConsole(String s) {
         writeToConsole(s, true);
@@ -213,11 +289,20 @@ public class MainWindow extends javax.swing.JFrame {
         
         allyPos = 0;
         enemyPos = 0;
+        
+        updateView();
     }
     
     public void updateView() {
-        CharacterStatus activeAlly = currentCombat.getAlly(allyPos);
-        CharacterStatus activeEnemy = currentCombat.getEnemy(enemyPos);
+        activeAlly = currentCombat.getAlly(allyPos);
+        activeEnemy = currentCombat.getEnemy(enemyPos);
+        
+        if (activeAlly == null) {
+            activeAlly = new CharacterStatus();
+        }
+        if (activeEnemy == null) {
+            activeEnemy = new CharacterStatus();
+        }
         
         allyName.setText(activeAlly.getName());
         enemyName.setText(activeEnemy.getName());
@@ -236,11 +321,9 @@ public class MainWindow extends javax.swing.JFrame {
             if (ab != null) {
                 allyButtons.get(i).setText(ab.getName());
                 allyButtons.get(i).setEnabled(true);
-                System.out.println("i: " + i + " true");
             } else {
                 allyButtons.get(i).setText("—");
                 allyButtons.get(i).setEnabled(false);
-                System.out.println("i: " + i + " false");
             }
         }
         
@@ -250,11 +333,9 @@ public class MainWindow extends javax.swing.JFrame {
             if (ab != null) {
                 enemyButtons.get(i).setText(ab.getName());
                 enemyButtons.get(i).setEnabled(true);
-                System.out.println("i: " + i + " true");
             } else {
                 enemyButtons.get(i).setText("—");
                 enemyButtons.get(i).setEnabled(false);
-                System.out.println("i: " + i + " false");
             }
         }
     }

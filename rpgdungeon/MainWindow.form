@@ -167,41 +167,65 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allyAbility0ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="allyAbility1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allyAbility1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="allyAbility2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allyAbility2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="allyAbility3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 4"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allyAbility3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="enemyAbility0">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enemyAbility0ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="enemyAbility1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enemyAbility1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="enemyAbility2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enemyAbility2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="enemyAbility3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ability 4"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enemyAbility3ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

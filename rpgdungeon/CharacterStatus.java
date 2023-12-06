@@ -28,6 +28,14 @@ public class CharacterStatus {
     
     protected List<StatusEffect> statuses;
     
+    public CharacterStatus() {
+        id = -1;
+        pos = -1;
+        chr = new Character("Dummy");
+        stats = new Stats();
+        statuses = new LinkedList<>();
+    }
+    
     public CharacterStatus(Character chr, int pos) {
         id = currentID;
         currentID++;
@@ -50,7 +58,7 @@ public class CharacterStatus {
     }
     
     public void updateStats() {
-        // add function here
+        stats = new Stats(chr.getStats());
     }
     
     public int changeHP(int change) {

@@ -37,11 +37,19 @@ public class Combat {
     }
     
     public CharacterStatus getAlly(int pos) {
-        return allies.get(pos);
+        try {
+            return allies.get(pos);
+        } catch (IndexOutOfBoundsException exc) {
+            return null;
+        }
     }
     
     public CharacterStatus getEnemy(int pos) {
-        return enemies.get(pos);
+        try {
+            return enemies.get(pos);
+        } catch (IndexOutOfBoundsException exc) {
+            return null;
+        }
     }
     
     public List<CharacterStatus> getAllies() {
