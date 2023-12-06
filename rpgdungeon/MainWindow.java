@@ -172,9 +172,9 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
 
-        jSplitPane.setDividerLocation(225);
-        jSplitPane.setMinimumSize(new java.awt.Dimension(450, 22));
-        jSplitPane.setPreferredSize(new java.awt.Dimension(450, 350));
+        jSplitPane.setDividerLocation(250);
+        jSplitPane.setMinimumSize(new java.awt.Dimension(500, 22));
+        jSplitPane.setPreferredSize(new java.awt.Dimension(500, 350));
 
         allyHPLabel.setText("HP: 0/0");
 
@@ -280,7 +280,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(enemyHPBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(allyAbility0)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                         .addComponent(allyAbility1))
                     .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(allyAbility2)

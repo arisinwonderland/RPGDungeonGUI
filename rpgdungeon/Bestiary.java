@@ -11,7 +11,7 @@ package com.arisinwonderland.rpgdungeon;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Bestiary {
     public static Bestiary m_instance;
@@ -24,7 +24,7 @@ public class Bestiary {
         return m_instance;
     }
     private Bestiary() {
-        map = new HashMap<>();
+        map = new TreeMap<>();
     };
     
     public Character add(Character ch){

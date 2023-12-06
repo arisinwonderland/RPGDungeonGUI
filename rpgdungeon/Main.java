@@ -49,20 +49,45 @@ public class Main {
                 Bestiary bestiary = Bestiary.getInstance();
                 
                 Character ch1 = new Character("Nio Tamanegi", 80, 90, 70, 50, 30, 90);
-                Ability ab1 = Ability.builder("Final Blow")
+                Character ch2 = new Character("Zoie Kaji", 40, 90, 60, 33, 28, 95);
+                Character ch3 = new Character("Yggmar Ulcros", 69, 69, 69, 45, 45, 92);
+                
+                Ability ab = Ability.builder("Final Blow")
                     .setDamageType(Ability.DamageType.PHYSICAL)
                     .setStatMultiplier(1.5)
                     .build();
-                Character ch2 = new Character("Zoie Kaji", 40, 90, 60, 33, 28, 95);
-                Ability ab2 = Ability.builder("Psychic Fire")
+                
+                ch1.addAbility(ab);
+                
+                ab = Ability.builder("Brave Sword Slash")
+                    .setDamageType(Ability.DamageType.PHYSICAL)
+                    .setDamageMultiplier(0.75)
+                    .build();
+                
+                ch1.addAbility(ab);
+                
+                ab = Ability.builder("Psychic Fire")
                     .setDamageType(Ability.DamageType.NONPHYSICAL)
                     .build();
                 
-                ch1.addAbility(ab1);
-                ch2.addAbility(ab2);
+                ch2.addAbility(ab);
+                
+                ab = Ability.builder("Pitch Hitter")
+                    .setDamageType(Ability.DamageType.PHYSICAL)
+                    .setDamageMultiplier(1.25)
+                    .build();
+                
+                ch2.addAbility(ab);
+                
+                ab = Ability.builder("Bold Move")
+                    .setDamageType(Ability.DamageType.PHYSICAL)
+                    .build();
+                
+                ch3.addAbility(ab);
                 
                 bestiary.add(ch1);
                 bestiary.add(ch2);
+                bestiary.add(ch3);
                 
                 CharacterStatus status1 = combat.addAlly("Nio Tamanegi");
                 CharacterStatus status2 = combat.addEnemy("Zoie Kaji");

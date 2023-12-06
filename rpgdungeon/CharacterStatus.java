@@ -100,7 +100,7 @@ public class CharacterStatus {
         int damage = (int) ((attackStat - defenseStat) * ab.getDamageMultiplier());
         int actualDamage = target.changeHP(damage * -1);
         
-        String log = String.format("%s used %s on %s, ", chr.getName(), ab.getName(), target.getName());
+        String log = String.format("%s uses %s on %s, ", chr.getName(), ab.getName(), target.getName());
         
         if (actualDamage <= 0) {
             log += String.format("dealing %d damage.", actualDamage * -1);

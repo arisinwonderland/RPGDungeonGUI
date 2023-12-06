@@ -153,6 +153,6 @@ public class Combat {
     }
     
     public int getEnemyCount() {
-        return allies.size();
+        return enemies.size();
     }
 }
