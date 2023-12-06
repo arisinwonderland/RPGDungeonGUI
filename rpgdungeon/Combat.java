@@ -81,10 +81,18 @@ public class Combat {
     }
     
     public List<CharacterStatus> getAllies() {
-        return new ArrayList<> (allies);
+        return new ArrayList<>(allies);
     }
     
     public List<CharacterStatus> getEnemies() {
-        return new ArrayList<> (enemies);
+        return new ArrayList<>(enemies);
+    }
+    
+    public int getAllyCount() {
+        return allies.size();
+    }
+    
+    public int getEnemyCount() {
+        return allies.size();
     }
 }

@@ -10,6 +10,7 @@ package com.arisinwonderland.rpgdungeon;
  */
 
 import java.util.Map;
+import java.util.Set;
 import java.util.HashMap;
 
 public class Bestiary {
@@ -32,6 +33,10 @@ public class Bestiary {
     
     public Character get(String name) {
         return map.get(name);
+    }
+    
+    public Set<String> list() {
+        return map.keySet();
     }
     
     public CharacterStatus instantiate(String name) {
