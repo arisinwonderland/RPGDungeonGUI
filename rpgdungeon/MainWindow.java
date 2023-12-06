@@ -7,7 +7,6 @@ package com.arisinwonderland.rpgdungeon;
 import javax.swing.text.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         
-        Console.setText("> ");
+        console.setText("> ");
         
         allyButtons = new ArrayList<>();
         enemyButtons = new ArrayList<>();
@@ -54,7 +53,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     public void writeToConsole(String s, boolean newLine) {
         try {
-           Document doc = Console.getDocument();
+           Document doc = console.getDocument();
            doc.insertString(doc.getLength(), s, null);
            if (newLine) {
                doc.insertString(doc.getLength(), "\n> ", null);
@@ -89,8 +88,22 @@ public class MainWindow extends javax.swing.JFrame {
             activeEnemy = new CharacterStatus();
         }
         
-        allyName.setText(activeAlly.getName());
-        enemyName.setText(activeEnemy.getName());
+        String[] allyList = currentCombat.getAllyList().toArray(new String[0]);
+        String[] enemyList = currentCombat.getEnemyList().toArray(new String[0]);
+        
+        javax.swing.DefaultComboBoxModel<String> allyModel = new javax.swing.DefaultComboBoxModel<>(allyList);
+        allySelect.setModel(allyModel);
+        
+        if (allyList.length != 0) {
+            allySelect.setSelectedIndex(allyPos);
+        }
+        
+        javax.swing.DefaultComboBoxModel<String> enemyModel = new javax.swing.DefaultComboBoxModel<>(enemyList);
+        enemySelect.setModel(enemyModel);
+        
+        if (enemyList.length != 0) {
+            enemySelect.setSelectedIndex(enemyPos);
+        }
         
         allyHPLabel.setText("HP: " + activeAlly.getHP() + "/" + activeAlly.getMaxHP());
         enemyHPLabel.setText("HP: " + activeEnemy.getHP() + "/" + activeEnemy.getMaxHP());
@@ -134,11 +147,9 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        allyName = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        enemyName = new javax.swing.JLabel();
+        jSplitPane = new javax.swing.JSplitPane();
+        controlPanel = new javax.swing.JPanel();
+        separator = new javax.swing.JSeparator();
         allyHPBar = new javax.swing.JProgressBar();
         allyHPLabel = new javax.swing.JLabel();
         enemyHPLabel = new javax.swing.JLabel();
@@ -153,19 +164,17 @@ public class MainWindow extends javax.swing.JFrame {
         enemyAbility3 = new javax.swing.JButton();
         allyAdd = new javax.swing.JButton();
         enemyAdd = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Console = new javax.swing.JTextPane();
+        allySelect = new javax.swing.JComboBox<>();
+        enemySelect = new javax.swing.JComboBox<>();
+        logPanel = new javax.swing.JScrollPane();
+        console = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
 
-        jSplitPane1.setDividerLocation(200);
-
-        allyName.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        allyName.setText("Ally Name");
-
-        enemyName.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        enemyName.setText("Enemy Name");
+        jSplitPane.setDividerLocation(225);
+        jSplitPane.setMinimumSize(new java.awt.Dimension(450, 22));
+        jSplitPane.setPreferredSize(new java.awt.Dimension(450, 350));
 
         allyHPLabel.setText("HP: 0/0");
 
@@ -174,56 +183,56 @@ public class MainWindow extends javax.swing.JFrame {
         allyAbility0.setText("Ability 1");
         allyAbility0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allyAbility0ActionPerformed(evt);
+                allyAbility0Selected(evt);
             }
         });
 
         allyAbility1.setText("Ability 2");
         allyAbility1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allyAbility1ActionPerformed(evt);
+                allyAbility1Selected(evt);
             }
         });
 
         allyAbility2.setText("Ability 3");
         allyAbility2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allyAbility2ActionPerformed(evt);
+                allyAbility2Selected(evt);
             }
         });
 
         allyAbility3.setText("Ability 4");
         allyAbility3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allyAbility3ActionPerformed(evt);
+                allyAbility3Selected(evt);
             }
         });
 
         enemyAbility0.setText("Ability 1");
         enemyAbility0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enemyAbility0ActionPerformed(evt);
+                enemyAbility0Selected(evt);
             }
         });
 
         enemyAbility1.setText("Ability 2");
         enemyAbility1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enemyAbility1ActionPerformed(evt);
+                enemyAbility1Selected(evt);
             }
         });
 
         enemyAbility2.setText("Ability 3");
         enemyAbility2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enemyAbility2ActionPerformed(evt);
+                enemyAbility2Selected(evt);
             }
         });
 
         enemyAbility3.setText("Ability 4");
         enemyAbility3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enemyAbility3ActionPerformed(evt);
+                enemyAbility3Selected(evt);
             }
         });
 
@@ -241,138 +250,151 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        allySelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allySelectActionPerformed(evt);
+            }
+        });
+
+        enemySelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enemySelectActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
+        controlPanel.setLayout(controlPanelLayout);
+        controlPanelLayout.setHorizontalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(separator)
+            .addGroup(controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enemyName)
-                            .addComponent(enemyHPLabel))
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enemyHPLabel)
+                            .addComponent(enemySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enemyAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(allyHPBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(enemyHPBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(allyAbility0)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addComponent(allyAbility1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(allyAbility2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(allyAbility3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(enemyAbility0)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enemyAbility1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(controlPanelLayout.createSequentialGroup()
                         .addComponent(enemyAbility2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enemyAbility3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(allyName)
-                            .addComponent(allyHPLabel))
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(allyHPLabel)
+                            .addComponent(allySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(allyAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        controlPanelLayout.setVerticalGroup(
+            controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(allyName)
-                        .addGap(5, 5, 5)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
                         .addComponent(allyHPLabel))
-                    .addComponent(allyAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(allyAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(allySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(allyHPBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(allyAbility0)
                     .addComponent(allyAbility1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(allyAbility2)
                     .addComponent(allyAbility3))
                 .addGap(15, 15, 15)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(enemyName)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addComponent(enemySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enemyHPLabel))
                     .addComponent(enemyAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enemyHPBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enemyAbility0)
                     .addComponent(enemyAbility1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enemyAbility2)
                     .addComponent(enemyAbility3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(jPanel1);
+        jSplitPane.setLeftComponent(controlPanel);
 
-        jScrollPane2.setViewportView(Console);
+        logPanel.setViewportView(console);
 
-        jSplitPane1.setRightComponent(jScrollPane2);
+        jSplitPane.setRightComponent(logPanel);
 
-        getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jSplitPane, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void allyAbility0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility0ActionPerformed
+    private void allyAbility0Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility0Selected
         writeToConsole(activeAlly.useAbility(0, activeEnemy));
         updateView();
-    }//GEN-LAST:event_allyAbility0ActionPerformed
+    }//GEN-LAST:event_allyAbility0Selected
 
-    private void allyAbility1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility1ActionPerformed
+    private void allyAbility1Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility1Selected
         writeToConsole(activeAlly.useAbility(1, activeEnemy));
         updateView();
-    }//GEN-LAST:event_allyAbility1ActionPerformed
+    }//GEN-LAST:event_allyAbility1Selected
 
-    private void allyAbility2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility2ActionPerformed
+    private void allyAbility2Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility2Selected
         writeToConsole(activeAlly.useAbility(2, activeEnemy));
         updateView();
-    }//GEN-LAST:event_allyAbility2ActionPerformed
+    }//GEN-LAST:event_allyAbility2Selected
 
-    private void allyAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility3ActionPerformed
+    private void allyAbility3Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility3Selected
         writeToConsole(activeAlly.useAbility(3, activeEnemy));
         updateView();
-    }//GEN-LAST:event_allyAbility3ActionPerformed
+    }//GEN-LAST:event_allyAbility3Selected
 
-    private void enemyAbility0ActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void enemyAbility0Selected(java.awt.event.ActionEvent evt) {                                              
         writeToConsole(activeEnemy.useAbility(0, activeAlly));
         updateView();
     }                                                                                       
 
-    private void enemyAbility1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility1ActionPerformed
+    private void enemyAbility1Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility1Selected
         writeToConsole(activeEnemy.useAbility(1, activeAlly));
         updateView();
-    }//GEN-LAST:event_enemyAbility1ActionPerformed
+    }//GEN-LAST:event_enemyAbility1Selected
 
-    private void enemyAbility2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility2ActionPerformed
+    private void enemyAbility2Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility2Selected
         writeToConsole(activeEnemy.useAbility(2, activeAlly));
         updateView();
-    }//GEN-LAST:event_enemyAbility2ActionPerformed
+    }//GEN-LAST:event_enemyAbility2Selected
 
-    private void enemyAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility3ActionPerformed
+    private void enemyAbility3Selected(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility3Selected
         writeToConsole(activeEnemy.useAbility(3, activeAlly));
         updateView();
-    }//GEN-LAST:event_enemyAbility3ActionPerformed
+    }//GEN-LAST:event_enemyAbility3Selected
 
     private void allyAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAddActionPerformed
         Bestiary bestiary = Bestiary.getInstance();
@@ -412,8 +434,17 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_enemyAddActionPerformed
 
+    private void allySelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allySelectActionPerformed
+        allyPos = allySelect.getSelectedIndex();
+        updateView();
+    }//GEN-LAST:event_allySelectActionPerformed
+
+    private void enemySelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemySelectActionPerformed
+        enemyPos = enemySelect.getSelectedIndex();
+        updateView();
+    }//GEN-LAST:event_enemySelectActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane Console;
     private javax.swing.JButton allyAbility0;
     private javax.swing.JButton allyAbility1;
     private javax.swing.JButton allyAbility2;
@@ -421,7 +452,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton allyAdd;
     private javax.swing.JProgressBar allyHPBar;
     private javax.swing.JLabel allyHPLabel;
-    private javax.swing.JLabel allyName;
+    private javax.swing.JComboBox<String> allySelect;
+    private javax.swing.JTextPane console;
+    private javax.swing.JPanel controlPanel;
     private javax.swing.JButton enemyAbility0;
     private javax.swing.JButton enemyAbility1;
     private javax.swing.JButton enemyAbility2;
@@ -429,10 +462,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton enemyAdd;
     private javax.swing.JProgressBar enemyHPBar;
     private javax.swing.JLabel enemyHPLabel;
-    private javax.swing.JLabel enemyName;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JComboBox<String> enemySelect;
+    private javax.swing.JSplitPane jSplitPane;
+    private javax.swing.JScrollPane logPanel;
+    private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
 }
