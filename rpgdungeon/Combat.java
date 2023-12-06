@@ -6,6 +6,10 @@ package com.arisinwonderland.rpgdungeon;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -86,6 +90,62 @@ public class Combat {
     
     public List<CharacterStatus> getEnemies() {
         return new ArrayList<>(enemies);
+    }
+    
+    public List<String> getAllyList() {
+        List<String> allyNames = new ArrayList<>();
+        List<String> allyList = new ArrayList<>();
+        
+        Map<String, Integer> allyCount = new HashMap<>();
+        Set<String> duplicates = new HashSet<>();
+        
+        for (CharacterStatus ally : allies) {
+            allyNames.add(ally.getName());
+            Object countObj = allyCount.putIfAbsent(ally.getName(), 1);
+            
+            if (countObj != null) {
+                duplicates.add(ally.getName());
+            }
+        }
+        
+        for (String name : allyNames) {
+            if (duplicates.contains(name)) {
+                allyList.add(name + " #" + allyCount.get(name));
+                allyCount.put(name, allyCount.get(name) + 1);
+            } else {
+                allyList.add(name);
+            }
+        }
+        
+        return allyList;
+    }
+    
+    public List<String> getEnemyList() {
+        List<String> enemyNames = new ArrayList<>();
+        List<String> enemyList = new ArrayList<>();
+        
+        Map<String, Integer> enemyCount = new HashMap<>();
+        Set<String> duplicates = new HashSet<>();
+        
+        for (CharacterStatus enemy : enemies) {
+            enemyNames.add(enemy.getName());
+            Object countObj = enemyCount.putIfAbsent(enemy.getName(), 1);
+            
+            if (countObj != null) {
+                duplicates.add(enemy.getName());
+            }
+        }
+        
+        for (String name : enemyNames) {
+            if (duplicates.contains(name)) {
+                enemyList.add(name + " #" + enemyCount.get(name));
+                enemyCount.put(name, enemyCount.get(name) + 1);
+            } else {
+                enemyList.add(name);
+            }
+        }
+        
+        return enemyList;
     }
     
     public int getAllyCount() {
