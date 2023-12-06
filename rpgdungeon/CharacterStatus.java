@@ -21,7 +21,6 @@ public class CharacterStatus {
     public static int currentID = 0;
     
     protected final int id;
-    protected final int pos;
     
     protected final Character chr;
     protected Stats stats;
@@ -30,23 +29,21 @@ public class CharacterStatus {
     
     public CharacterStatus() {
         id = -1;
-        pos = -1;
         chr = new Character("Dummy");
         stats = new Stats();
         statuses = new LinkedList<>();
     }
     
-    public CharacterStatus(Character chr, int pos) {
+    public CharacterStatus(Character chr) {
         id = currentID;
         currentID++;
         this.chr = chr;
-        this.pos = pos;
         stats = new Stats(chr.getStats());
         statuses = new LinkedList<>();
     }
     
     public Character getCharacter() {
-        return new Character(chr);
+        return Character.copy(chr);
     }
     
     public Ability getAbility(int id) {

@@ -235,32 +235,38 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_allyAbility0ActionPerformed
 
     private void allyAbility1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility1ActionPerformed
-        // TODO add your handling code here:
+        writeToConsole(activeAlly.useAbility(1, activeEnemy));
+        updateView();
     }//GEN-LAST:event_allyAbility1ActionPerformed
 
     private void allyAbility2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility2ActionPerformed
-        // TODO add your handling code here:
+        writeToConsole(activeAlly.useAbility(2, activeEnemy));
+        updateView();
     }//GEN-LAST:event_allyAbility2ActionPerformed
 
     private void allyAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allyAbility3ActionPerformed
-        // TODO add your handling code here:
+        writeToConsole(activeAlly.useAbility(3, activeEnemy));
+        updateView();
     }//GEN-LAST:event_allyAbility3ActionPerformed
 
-    private void enemyAbility0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility0ActionPerformed
+    private void enemyAbility0ActionPerformed(java.awt.event.ActionEvent evt) {                                              
         writeToConsole(activeEnemy.useAbility(0, activeAlly));
         updateView();
-    }//GEN-LAST:event_enemyAbility0ActionPerformed                                          
+    }                                                                                       
 
     private void enemyAbility1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility1ActionPerformed
-        // TODO add your handling code here:
+        writeToConsole(activeEnemy.useAbility(1, activeAlly));
+        updateView();
     }//GEN-LAST:event_enemyAbility1ActionPerformed
 
     private void enemyAbility2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility2ActionPerformed
-        // TODO add your handling code here:
+        writeToConsole(activeEnemy.useAbility(2, activeAlly));
+        updateView();
     }//GEN-LAST:event_enemyAbility2ActionPerformed
 
     private void enemyAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enemyAbility3ActionPerformed
-        // TODO add your handling code here:
+        writeToConsole(activeEnemy.useAbility(3, activeAlly));
+        updateView();
     }//GEN-LAST:event_enemyAbility3ActionPerformed
     
     public void writeToConsole(String s) {

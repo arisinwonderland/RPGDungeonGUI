@@ -9,5 +9,6 @@ package com.arisinwonderland.rpgdungeon;
  * @author Aris Yu
  */
 public interface StatusEffect {
+    public double getPriority();
     public void apply(CharacterStatus c);
 }

@@ -46,6 +46,8 @@ public class Main {
                 mainWindow.setVisible(true);
                 mainWindow.setCurrentCombat(combat);
                 
+                Bestiary bestiary = Bestiary.getInstance();
+                
                 Character ch1 = new Character("Nio Tamanegi", 80, 90, 70, 50, 30, 90);
                 Ability ab1 = Ability.builder("Final Blow")
                     .setDamageType(Ability.DamageType.PHYSICAL)
@@ -59,8 +61,11 @@ public class Main {
                 ch1.addAbility(ab1);
                 ch2.addAbility(ab2);
                 
-                CharacterStatus status1 = combat.addAlly(ch1);
-                CharacterStatus status2 = combat.addEnemy(ch2);
+                bestiary.add(ch1);
+                bestiary.add(ch2);
+                
+                CharacterStatus status1 = combat.addAlly("Nio Tamanegi");
+                CharacterStatus status2 = combat.addEnemy("Zoie Kaji");
                 
                 mainWindow.updateView();
             }

@@ -22,18 +22,46 @@ public class Combat {
     
     public CharacterStatus addAlly(Character chr) {
         int position = allies.size();
-        CharacterStatus status = new CharacterStatus(chr, position);
+        CharacterStatus status = new CharacterStatus(chr);
         allies.add(status);
         
         return allies.get(position);
     }
     
+    public CharacterStatus addAlly(String name) {
+        Bestiary bestiary = Bestiary.getInstance();
+        CharacterStatus status = bestiary.instantiate(name);
+        
+        if (status != null) {
+            int position = allies.size();
+            allies.add(status);
+
+            return allies.get(position);
+        } else {
+            return null;
+        }
+    }
+    
     public CharacterStatus addEnemy(Character chr) {
         int position = enemies.size();
-        CharacterStatus status = new CharacterStatus(chr, position * -1);
+        CharacterStatus status = new CharacterStatus(chr);
         enemies.add(status);
         
         return enemies.get(position);
+    }
+    
+    public CharacterStatus addEnemy(String name) {
+        Bestiary bestiary = Bestiary.getInstance();
+        CharacterStatus status = bestiary.instantiate(name);
+        
+        if (status != null) {
+            int position = enemies.size();
+            enemies.add(status);
+
+            return enemies.get(position);
+        } else {
+            return null;
+        }
     }
     
     public CharacterStatus getAlly(int pos) {

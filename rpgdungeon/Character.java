@@ -32,14 +32,22 @@ public class Character {
         abilities = new ArrayList<>();
     }
     
-    public Character(Character c) {
-        this.name = c.name;
+    private Character(Character ch) {
+        this.name = ch.name;
         
-        stats = new Stats(c.stats);
+        stats = new Stats(ch.stats);
         abilities = new ArrayList<>();
         
-        for (Ability ab : c.abilities) {
+        for (Ability ab : ch.abilities) {
             abilities.add(new Ability(ab));
+        }
+    }
+    
+    public static Character copy(Character ch) {
+        if (ch == null) {
+            return null;
+        } else {
+            return new Character(ch);
         }
     }
     
